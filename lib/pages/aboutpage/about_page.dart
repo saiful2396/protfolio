@@ -26,18 +26,14 @@ class DesktopAboutMe extends StatefulWidget {
 }
 
 class _DesktopAboutMeState extends State<DesktopAboutMe> {
-  var width;
-  var height;
-
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Container(
         //padding: EdgeInsets.only(left: 0.14 * width, right: 0.09 * width),
         height: height,
         width: width,
-        //padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 32),
         child: stackedWidgets(height, width));
   }
 }
@@ -48,59 +44,59 @@ class MobileAboutMe extends StatefulWidget {
 }
 
 class _MobileAboutMeState extends State<MobileAboutMe> {
-  var width;
-  var height;
-
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
-
-    return Container(
-        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-        height: 1 * height,
-        width: width,
-        //padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 32),
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            nameWidget(40, 15),
-            SizedBox(
-              height: 40,
-            ),
-            // myImageWidget(height / 1.5, width / 2)
-            Container(
-              height: 0.6 * height,
-              //width: 0.4 * width,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                child: Image.network(
-                  kProfileImageURL,
-                  fit: BoxFit.cover,
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    return ListView(
+      children: [
+        Container(
+            padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+            height: 1 * height,
+            width: width,
+            //padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 32),
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                nameWidget(40, 15),
+                SizedBox(
+                  height: 40,
                 ),
-              ),
-            ),
+                // myImageWidget(height / 1.5, width / 2)
+                Container(
+                  height: 0.6 * height,
+                  width: 0.2 * width,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    child: Image.network(
+                      kProfileImageURL,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 60.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  iconWidget('linkedin'),
-                  SizedBox(
-                    width: 20,
+                Padding(
+                  padding: const EdgeInsets.only(top: 60.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      iconWidget('linkedin'),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      iconWidget('twitter'),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      iconWidget('github'),
+                    ],
                   ),
-                  iconWidget('twitter'),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  iconWidget('github'),
-                ],
-              ),
-            )
-          ],
-        ));
+                )
+              ],
+            )),
+      ],
+    );
   }
 }
 
@@ -255,50 +251,37 @@ Widget stackedWidgets(double height, double width) {
 
 //tablet view code simplification
 Widget tabletViewWidget(double width, double height) {
-  return Container(
-      padding: EdgeInsets.only(left: 0.02 * width, right: 0.02 * width),
-      height: height,
-      width: width,
-      //padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 32),
-      child: Column(
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          nameWidget(50, 20),
-          SizedBox(
-            height: 60,
-          ),
-          myImageWidget(height / 1, width / 2),
-          SizedBox(
-            height: 60,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                iconWidget('linkedin'),
-                SizedBox(
-                  width: 20,
-                ),
-                iconWidget('twitter'),
-                SizedBox(
-                  width: 20,
-                ),
-                iconWidget('github'),
-              ],
+  return ListView(
+    shrinkWrap: true,
+    physics: ScrollPhysics(),
+    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      nameWidget(50, 20),
+      SizedBox(
+        height: 60
+      ),
+      myImageWidget(height / 1, width / 2),
+      SizedBox(
+        height: 60
+      ),
+      Padding(
+        padding: const EdgeInsets.only(right: 12.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            iconWidget('linkedin'),
+            SizedBox(
+              width: 20
             ),
-          )
-        ],
-      ));
+            iconWidget('twitter'),
+            SizedBox(
+              width: 20
+            ),
+            iconWidget('github'),
+          ],
+        ),
+      )
+    ],
+  );
 }
-
-// Widget iconWidget(String iconName) {
-//   if (iconName == 'linkedin') {
-//     return Image(image: AssetImage('lib/icons/linkedin.png'));
-//   } else if (iconName == 'twitter') {
-//     return Image(image: AssetImage('lib/icons/twitter.png'));
-//   } else {
-//     return Image(image: AssetImage('lib/icons/github.png'));
-//   }
-// }

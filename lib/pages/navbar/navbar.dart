@@ -27,23 +27,24 @@ class DesktopNavbar extends StatefulWidget {
 }
 
 class _DesktopNavbarState extends State<DesktopNavbar> {
-  var utilityProvider;
-  ScrollController scrollController;
-
   @override
   Widget build(BuildContext context) {
-    utilityProvider = Provider.of<UtilityProvider>(context);
-    scrollController = utilityProvider.getScrollController();
-
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 32),
-        child: Container(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-              Flexible(child: websiteIcon()),
-              Flexible(child: navBarItems(scrollController)),
-            ])));
+    final utilityProvider = Provider.of<UtilityProvider>(context);
+    final scrollController = utilityProvider.getScrollController();
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 32),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            child: websiteIcon(),
+          ),
+          Flexible(
+            child: navBarItems(scrollController),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -53,26 +54,25 @@ class MobileNavbar extends StatefulWidget {
 }
 
 class _MobileNavbarState extends State<MobileNavbar> {
-  var utilityProvider;
-  ScrollController scrollController;
-
   @override
   Widget build(BuildContext context) {
-    utilityProvider = Provider.of<UtilityProvider>(context);
-    scrollController = utilityProvider.getScrollController();
+    final utilityProvider = Provider.of<UtilityProvider>(context);
+    final scrollController = utilityProvider.getScrollController();
 
     return Container(
-        child: Column(
-      children: [
-        Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
-            child: websiteIcon()),
-        SizedBox(
-          height: 20,
-        ),
-        navBarItems(scrollController)
-      ],
-    ));
+      child: Column(
+        children: [
+          Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+              child: websiteIcon()),
+          SizedBox(
+            height: 20,
+          ),
+          navBarItems(scrollController)
+        ],
+      ),
+    );
   }
 }
 
@@ -98,10 +98,6 @@ Widget websiteIcon() {
             padding: const EdgeInsets.all(12.0),
             child: Text(
               kIconFirstLetter,
-              // style: TextStyle(
-              //     fontSize: 20,
-              //     color: Colors.redAccent,
-              //     fontWeight: FontWeight.bold),
               style: GoogleFonts.poppins(
                   color: Colors.red, fontSize: 30, fontWeight: FontWeight.w600),
             ),
@@ -109,7 +105,6 @@ Widget websiteIcon() {
         ),
         Text(
           kIconRemainingLetters,
-          // style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           style: GoogleFonts.poppins(
               color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600),
         ),
@@ -120,7 +115,6 @@ Widget websiteIcon() {
 
 Widget navBarItems(ScrollController scrollController) {
   return Row(
-    // mainAxisSize: MainAxisSize.max,
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       navBarOptions(kAbout, 1, () {
@@ -165,7 +159,6 @@ Widget navBarOptions(String title, int position, Function function) {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
       child: Text(
         title,
-        // style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         style: GoogleFonts.poppins(
             color: Colors.black, fontSize: 12, fontWeight: FontWeight.w600),
       ),

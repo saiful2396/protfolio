@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class UtilityProvider with ChangeNotifier {
-  ScrollController scrollController = new ScrollController();
+  ScrollController scrollController = ScrollController();
   double cardElevation = 30;
 
   getCardElevation() => cardElevation;

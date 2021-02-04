@@ -6,15 +6,21 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider<UtilityProvider>(create: (_) => UtilityProvider())
-    ],
-    child: MaterialApp(
-        title: 'Khurram Rizvi | Portfolio',
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: UtilityProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Saiful Islam | Portfolio',
         theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-        home: PortfolioApp()),
-  ));
+        home: PortfolioApp(),
+      ),
+    ),
+  );
 }
 
 class PortfolioApp extends StatefulWidget {
@@ -23,12 +29,10 @@ class PortfolioApp extends StatefulWidget {
 }
 
 class _PortfolioAppState extends State<PortfolioApp> {
-  var utilityProvider;
-  double deviceWidth;
-  double deviceHeight;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomePage());
+    return Scaffold(
+      body: HomePage(),
+    );
   }
 }

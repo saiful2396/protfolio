@@ -25,60 +25,50 @@ class DesktopPortfolioPage extends StatefulWidget {
 }
 
 class _DesktopPortfolioPageState extends State<DesktopPortfolioPage> {
-  var width;
-  var height;
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0.08 * width),
-      //width: width,
-      //height: height * 0.5,
-      child: Row(
-        children: [
-          Container(
-            child: SingleChildScrollView(
-              physics: NeverScrollableScrollPhysics(),
-              child:
-                  Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-                workShowCaseImages(0.6 * height, 0.4 * width, kWorkImageUrl1),
-                SizedBox(
-                  height: 60,
-                ),
-                workShowCaseImages(0.6 * height, 0.4 * width, kWorkImageUrl2),
-                SizedBox(
-                  height: 60,
-                ),
-                viewAllWorkButtonWidget()
-              ]),
-            ),
-          ),
-          SizedBox(
-            width: 60,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 100),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    return ListView(
+      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                mySelectedWorkWidget(40),
-                SizedBox(
-                  height: 60,
+                workShowCaseImages(
+                  0.6 * height,
+                  0.45 * width,
+                  kWorkImageUrl1,
                 ),
-                workShowCaseImages(0.6 * height, 0.4 * width, kWorkImageUrl3),
-                SizedBox(
-                  height: 60,
-                ),
-                workShowCaseImages(0.6 * height, 0.4 * width, kWorkImageUrl4),
-                SizedBox(
-                  height: 60,
-                ),
+                SizedBox(height: 60),
+                workShowCaseImages(0.5 * height, 0.4 * width, kWorkImageUrl2),
+                SizedBox(height: 60),
+                viewAllWorkButtonWidget()
               ],
             ),
-          ),
-        ],
-      ),
+            SizedBox(width: 60),
+            Container(
+              margin: EdgeInsets.only(top: 100),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  mySelectedWorkWidget(40),
+                  SizedBox(height: 60),
+                  workShowCaseImages(0.6 * height, 0.4 * width, kWorkImageUrl3),
+                  SizedBox(height: 60),
+                  workShowCaseImages(0.6 * height, 0.4 * width, kWorkImageUrl4),
+                  SizedBox(height: 60),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -106,18 +96,20 @@ class _TabletPorfolioPageState extends State<TabletPortfolioPage> {
           Container(
             child: SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
-              child:
-                  Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-                workShowCaseImages(0.4 * height, 0.4 * width, kWorkImageUrl1),
-                SizedBox(
-                  height: 20,
-                ),
-                workShowCaseImages(0.4 * height, 0.4 * width, kWorkImageUrl2),
-                SizedBox(
-                  height: 20,
-                ),
-                viewAllWorkButtonWidget()
-              ]),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  workShowCaseImages(0.4 * height, 0.4 * width, kWorkImageUrl1),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  workShowCaseImages(0.4 * height, 0.4 * width, kWorkImageUrl2),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  viewAllWorkButtonWidget()
+                ],
+              ),
             ),
           ),
           SizedBox(
@@ -137,9 +129,6 @@ class _TabletPorfolioPageState extends State<TabletPortfolioPage> {
                   height: 20,
                 ),
                 workShowCaseImages(0.4 * height, 0.4 * width, kWorkImageUrl4),
-                SizedBox(
-                  height: 20,
-                ),
               ],
             ),
           ),
@@ -155,16 +144,14 @@ class MobilePortfolioPage extends StatefulWidget {
 }
 
 class _MobilePortfolioPageState extends State<MobilePortfolioPage> {
-  var width;
-  var height;
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return Container(
       width: width,
-      //height: height,
+      height: height,
       padding: EdgeInsets.only(left: 20, right: 20),
       child: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
@@ -172,26 +159,25 @@ class _MobilePortfolioPageState extends State<MobilePortfolioPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 20,
+              height: 20
             ),
             mySelectedWorkWidget(30),
             SizedBox(
-              height: 20,
+              height: 20
             ),
             workShowCaseImages(0.3 * height, 1 * width, kWorkImageUrl1),
             SizedBox(
-              height: 20,
+              height: 20
             ),
             workShowCaseImages(0.3 * height, 1 * width, kWorkImageUrl3),
             SizedBox(
-              height: 20,
+              height: 20
             ),
             workShowCaseImages(0.3 * height, 1 * width, kWorkImageUrl4),
             SizedBox(
-              height: 20,
+              height: 20
             ),
             viewAllWorkButtonWidget()
-            //workShowCaseImages(0.3 * height, 1 * width, 'lib/images/crypto.png'),
           ],
         ),
       ),

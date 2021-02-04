@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../providers/utility_provider.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../utilities/strings.dart';
 import '../../widgets/icon_widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ServicesPage extends StatelessWidget {
   @override
@@ -28,83 +28,72 @@ class DesktopServicesPage extends StatefulWidget {
 }
 
 class _DesktopServicesPageState extends State<DesktopServicesPage> {
-  var width;
-  var height;
-  var utilityProvider;
-
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
-    utilityProvider = Provider.of<UtilityProvider>(context);
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0.1 * width),
-      width: width,
-      height: height,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Center(child: whatIDoWidget(45)),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              whatIDoCard(
-                  Colors.yellowAccent.withOpacity(0.4),
-                  'lib/icons/pen.png',
-                  kCard1title,
-                  kCard1Descrption,
-                  width,
-                  height,
-                  0.22 * width,
-                  400,
-                  18,
-                  14),
-              whatIDoCard(
-                  Colors.tealAccent.withOpacity(0.4),
-                  'lib/icons/mob_dev.png',
-                  kCard2title,
-                  kCard2Descrption,
-                  width,
-                  height,
-                  0.22 * width,
-                  400,
-                  18,
-                  14),
-              whatIDoCard(
-                  Colors.redAccent.withOpacity(0.4),
-                  'lib/icons/web.png',
-                  kCard3title,
-                  kCard3Descrption,
-                  width,
-                  height,
-                  0.22 * width,
-                  400,
-                  18,
-                  14),
-            ],
-          ),
-          SizedBox(
-            height: 80,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 40.0),
-                child: whoIAmWidget(45),
-              ),
-              SizedBox(
-                width: 0.20 * width,
-              ),
-              whoIamDetailsWidget(80)
-            ],
-          )
-        ],
-      ),
+    final deviceSize = MediaQuery.of(context).size;
+    return ListView(
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+      children: [
+        Center(child: whatIDoWidget(45)),
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            whatIDoCard(
+                Colors.yellowAccent.withOpacity(0.4),
+                'lib/icons/pen.png',
+                kCard1title,
+                kCard1Descrption,
+                deviceSize.width,
+                deviceSize.height,
+                0.22 * deviceSize.width,
+                400,
+                18,
+                14),
+            whatIDoCard(
+                Colors.tealAccent.withOpacity(0.4),
+                'lib/icons/mob_dev.png',
+                kCard2title,
+                kCard2Descrption,
+                deviceSize.width,
+                deviceSize.height,
+                0.22 * deviceSize.width,
+                400,
+                18,
+                14),
+            whatIDoCard(
+                Colors.redAccent.withOpacity(0.4),
+                'lib/icons/web.png',
+                kCard3title,
+                kCard3Descrption,
+                deviceSize.width,
+                deviceSize.height,
+                0.22 * deviceSize.width,
+                400,
+                18,
+                14),
+          ],
+        ),
+        SizedBox(
+          height: 80,
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 40.0),
+              child: whoIAmWidget(45),
+            ),
+            SizedBox(
+              width: 0.20 * deviceSize.width,
+            ),
+            whoIamDetailsWidget(80)
+          ],
+        )
+      ],
     );
   }
 }
@@ -115,77 +104,68 @@ class TabletServicesPage extends StatefulWidget {
 }
 
 class _TabletServicesPageState extends State<TabletServicesPage> {
-  var width;
-  var height;
-
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
-    return Container(
-      width: width,
-      height: height,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Center(child: whatIDoWidget(30)),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
+    final deviceSize = MediaQuery.of(context).size;
+    return ListView(
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+      children: [
+        Center(child: whatIDoWidget(30)),
+        SizedBox(height: 30),
+        Container(
+          height: deviceSize.height,
+          width: deviceSize.width,
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               whatIDoCard(
-                  Colors.yellowAccent.withOpacity(0.4),
-                  'lib/icons/pen.png',
-                  kCard1title,
-                  kCard1Descrption,
-                  width,
-                  height,
-                  0.3 * width,
-                  400,
-                  14,
-                  12),
+                Colors.yellowAccent.withOpacity(0.4),
+                'lib/icons/pen.png',
+                kCard1title,
+                kCard1Descrption,
+                deviceSize.width,
+                deviceSize.height,
+                0.3 * deviceSize.width,
+                400,
+                14,
+                12,
+              ),
               whatIDoCard(
-                  Colors.tealAccent.withOpacity(0.4),
-                  'lib/icons/mob_dev.png',
-                  kCard2title,
-                  kCard2Descrption,
-                  width,
-                  height,
-                  0.3 * width,
-                  400,
-                  14,
-                  12),
+                Colors.tealAccent.withOpacity(0.4),
+                'lib/icons/mob_dev.png',
+                kCard2title,
+                kCard2Descrption,
+                deviceSize.width,
+                deviceSize.height,
+                0.3 * deviceSize.width,
+                400,
+                14,
+                12,
+              ),
               whatIDoCard(
-                  Colors.redAccent.withOpacity(0.4),
-                  'lib/icons/web.png',
-                  kCard3title,
-                  kCard3Descrption,
-                  width,
-                  height,
-                  0.3 * width,
-                  400,
-                  14,
-                  12),
+                Colors.redAccent.withOpacity(0.4),
+                'lib/icons/web.png',
+                kCard3title,
+                kCard3Descrption,
+                deviceSize.width,
+                deviceSize.height,
+                0.3 * deviceSize.width,
+                400,
+                14,
+                12,
+              ),
             ],
           ),
-          SizedBox(
-            height: 80,
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              whoIAmWidget(30),
-              // SizedBox(
-              //   width: 0.20 * width,
-              // ),
-              whoIamDetailsWidget(40)
-            ],
-          )
-        ],
-      ),
+        ),
+        SizedBox(height: 80),
+        Column(
+          children: [
+            whoIAmWidget(30),
+            whoIamDetailsWidget(40),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -196,62 +176,54 @@ class MobileServicesPage extends StatefulWidget {
 }
 
 class _MobileServicesPageState extends State<MobileServicesPage> {
-  var width;
-  var height;
-
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
-    return Container(
-      //color: Colors.red,
-      padding: EdgeInsets.only(left: 20, right: 20),
-      width: width,
-      height: height,
-      child: Column(
-        children: [
-          whatIDoWidget(30),
-          SizedBox(
-            height: 30,
-          ),
-          whatIdoCardMobile(
-            height,
-            width,
-            Colors.yellowAccent.withOpacity(0.4),
-            'lib/icons/pen.png',
-            kCard1title,
-            kCard1Descrption,
-          ),
-          whatIdoCardMobile(
-            height,
-            width,
-            Colors.tealAccent.withOpacity(0.4),
-            'lib/icons/mob_dev.png',
-            kCard2title,
-            kCard2Descrption,
-          ),
-          whatIdoCardMobile(
-            height,
-            width,
-            Colors.redAccent.withOpacity(0.4),
-            'lib/icons/web.png',
-            kCard3title,
-            kCard3Descrption,
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          whoIAmWidget(30),
-          whoIamDetailsWidget(30)
-        ],
-      ),
+    final deviceSize = MediaQuery.of(context).size;
+    return ListView(
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+      children: [
+        whatIDoWidget(30),
+        SizedBox(height: 30),
+        whatIdoCardMobile(
+          deviceSize.height,
+          deviceSize.width,
+          Colors.yellowAccent.withOpacity(0.4),
+          'lib/icons/pen.png',
+          kCard1title,
+          kCard1Descrption,
+        ),
+        whatIdoCardMobile(
+          deviceSize.height,
+          deviceSize.width,
+          Colors.tealAccent.withOpacity(0.4),
+          'lib/icons/mob_dev.png',
+          kCard2title,
+          kCard2Descrption,
+        ),
+        whatIdoCardMobile(
+          deviceSize.height,
+          deviceSize.width,
+          Colors.redAccent.withOpacity(0.4),
+          'lib/icons/web.png',
+          kCard3title,
+          kCard3Descrption,
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        whoIAmWidget(30),
+        whoIamDetailsWidget(30)
+      ],
     );
   }
 }
 
 Widget whatIDoWidget(double fontSize) {
-  return Text(kWhatIdo,
-      style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w600));
+  return Text(
+    kWhatIdo,
+    style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w600),
+  );
 }
 
 Widget whatIDoCard(
@@ -266,17 +238,16 @@ Widget whatIDoCard(
     double cardTitleTextSize,
     double cardDescriptionTextSize) {
   return Material(
-    //color: Colors.white54,
-    //shadowColor: Colors.tealAccent,
     borderRadius: BorderRadius.all(Radius.circular(8)),
     elevation: 20,
     child: Container(
       width: cardWidth,
       height: cardHeight,
       decoration: BoxDecoration(
-          border: Border.all(
-              width: 0.2, color: Colors.white12, style: BorderStyle.solid),
-          borderRadius: BorderRadius.circular(8)),
+        border: Border.all(
+            width: 0.2, color: Colors.white12, style: BorderStyle.solid),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -292,11 +263,10 @@ Widget whatIDoCard(
                 color: color,
                 child: Center(
                   child: Image(
-                      //fit: BoxFit.cover,
-                      width: 60,
-                      image: AssetImage(
-                        iconPath,
-                      )),
+                    //fit: BoxFit.cover,
+                    width: 60,
+                    image: AssetImage(iconPath),
+                  ),
                 ),
               ),
             ],
@@ -310,9 +280,7 @@ Widget whatIDoCard(
             style: TextStyle(
                 fontSize: cardTitleTextSize, fontWeight: FontWeight.w700),
           ),
-          SizedBox(
-            height: 20,
-          ),
+          SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
@@ -333,8 +301,13 @@ Widget whatIDoCard(
 }
 
 Widget whoIAmWidget(double fontSize) {
-  return Text(kWhoIam,
-      style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w600));
+  return Text(
+    kWhoIam,
+    style: TextStyle(
+      fontSize: fontSize,
+      fontWeight: FontWeight.w600,
+    ),
+  );
 }
 
 Widget whoIamDetailsWidget(double spaceAfterCards) {
@@ -355,15 +328,14 @@ Widget whoIamDetailsWidget(double spaceAfterCards) {
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(
-          height: 60,
-        ),
+        SizedBox(height: 60),
         Row(
           children: [
             MaterialButton(
                 hoverElevation: 10,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40)),
+                  borderRadius: BorderRadius.circular(40),
+                ),
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                 color: Colors.red[400],
                 child: Text(
@@ -399,11 +371,11 @@ Widget whoIamDetailsWidget(double spaceAfterCards) {
 
 Widget whatIdoCardMobile(double height, double width, Color color,
     String imagePath, String title, String description) {
-  return Column(
-    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  return ListView(
+    shrinkWrap: true,
+    physics: ScrollPhysics(),
     children: [
       Container(
-        //color: Colors.black,
         height: height / 6,
         width: width,
         child: Material(
@@ -413,18 +385,21 @@ Widget whatIdoCardMobile(double height, double width, Color color,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(6),
+                  ),
                   color: color,
                 ),
                 width: 120,
                 height: height / 6,
                 child: Center(
                   child: Image(
-                      //fit: BoxFit.cover,
-                      width: 60,
-                      image: AssetImage(
-                        imagePath,
-                      )),
+                    fit: BoxFit.cover,
+                    width: 60,
+                    image: AssetImage(
+                      imagePath,
+                    ),
+                  ),
                 ),
               ),
               Flexible(
@@ -459,9 +434,6 @@ Widget whatIdoCardMobile(double height, double width, Color color,
             ],
           ),
         ),
-      ),
-      SizedBox(
-        height: 20,
       ),
     ],
   );
